@@ -139,6 +139,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ACCESS.vb" />
+    <Compile Include="Bitmap32.vb" />
     <Compile Include="CodiceFiscale.vb" />
     <Compile Include="Controlli.vb" />
     <Compile Include="Cookie.vb" />
