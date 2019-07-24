@@ -1,8 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>ClassLibrary1</RootNamespace>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>clsLavoro</RootNamespace>
+    <TargetFramework>netstandard3.5</TargetFramework>
+    <OutputType>Library</OutputType>
+    <StartupObject />
   </PropertyGroup>
 
 </Project>

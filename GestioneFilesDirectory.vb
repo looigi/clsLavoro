@@ -155,8 +155,8 @@ Public Class GestioneFilesDirectory
 	Public Function TornaDimensioneFile(NomeFile As String) As Long
         If File.Exists(NomeFile) Then
             Dim infoReader As System.IO.FileInfo
-            infoReader = My.Computer.FileSystem.GetFileInfo(NomeFile)
-            Dim Dime As Long = infoReader.Length
+			infoReader = FileSystem.GetFileInfo(NomeFile)
+			Dim Dime As Long = infoReader.Length
             infoReader = Nothing
 
             Return Dime
