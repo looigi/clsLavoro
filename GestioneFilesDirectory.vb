@@ -1,8 +1,6 @@
 ﻿Imports System.IO
 Imports System.Text
-Imports System.Management
 Imports System.Security.AccessControl
-Imports System.Windows.Forms
 Imports System.Runtime.InteropServices
 Imports System.ComponentModel
 Imports System.Threading
@@ -14,9 +12,9 @@ Public Structure ModalitaDiScan
 End Structure
 
 Public Class GestioneFilesDirectory
-    Private barra As String = "\"
+	Private barra As String = "\"
 
-    Private DirectoryRilevate() As String
+	Private DirectoryRilevate() As String
     Private FilesRilevati() As String
     Private QuantiFilesRilevati As Long
     Private QuanteDirRilevate As Long
@@ -91,11 +89,11 @@ Public Class GestioneFilesDirectory
 						End If
 
 						If Not bHeader Then
-							Ritorno = AggiungeCampo(sLine, Separatore, Dove, NomeCampo)
+							Ritorno = InserisceNuovoCampoInStringa(sLine, Separatore, Dove, NomeCampo)
 							Aggiunto = True
 							bHeader = True
 						Else
-							Ritorno = AggiungeCampo(sLine, Separatore, Dove, Valore)
+							Ritorno = InserisceNuovoCampoInStringa(sLine, Separatore, Dove, Valore)
 							Aggiunto = True
 						End If
 						If Ritorno.Contains("ERROR:") Then
