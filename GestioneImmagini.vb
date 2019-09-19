@@ -65,6 +65,67 @@ Public Class GestioneImmagini
 		End Try
 	End Sub
 
+	Public Function RidimensionaMantenendoProporzioni(Path As String, Path2 As String, Larghezza As Integer) As String
+		Try
+			Dim myEncoder As System.Drawing.Imaging.Encoder
+			Dim myEncoderParameters As New Imaging.EncoderParameters(1)
+			Dim img2 As Bitmap
+			Dim ImmaginePiccola22 As Image
+			Dim jgpEncoder2 As Imaging.ImageCodecInfo
+			Dim myEncoder2 As System.Drawing.Imaging.Encoder
+			Dim myEncoderParameters2 As New Imaging.EncoderParameters(1)
+
+			Dim Dime As String = RitornaDimensioneImmagine(Path)
+			If Dime.Contains("ERROR") Then
+				File.Delete(Path)
+				Return "ERROR: file non valido"
+				Exit Function
+			End If
+
+			Dim Dimensioni() As String = Dime.Split("x")
+			Dim x As Integer = Dimensioni(0)
+			Dim y As Integer = Dimensioni(1)
+
+			If x > Larghezza Or y > Larghezza Then
+				Dim propX As Single = Larghezza / x
+				Dim propY As Single = Larghezza / y
+
+				Dim largh As Integer
+				Dim alt As Integer
+
+				If propX < propY Then
+					largh = x * propX
+					alt = y * propX
+				Else
+					largh = x * propY
+					alt = y * propY
+				End If
+
+				img2 = New Bitmap(Path)
+				ImmaginePiccola22 = New Bitmap(img2, largh, alt)
+				img2.Dispose()
+				img2 = Nothing
+
+				myEncoder = System.Drawing.Imaging.Encoder.Quality
+				jgpEncoder2 = GetEncoder(Imaging.ImageFormat.Jpeg)
+				myEncoder2 = System.Drawing.Imaging.Encoder.Quality
+				Dim myEncoderParameter2 As New Imaging.EncoderParameter(myEncoder, 97)
+				myEncoderParameters2.Param(0) = myEncoderParameter2
+				ImmaginePiccola22.Save(Path2, jgpEncoder2, myEncoderParameters2)
+
+				ImmaginePiccola22.Dispose()
+
+				ImmaginePiccola22 = Nothing
+				jgpEncoder2 = Nothing
+				myEncoderParameter2 = Nothing
+			End If
+		Catch ex As Exception
+
+		End Try
+
+		Return "OK"
+	End Function
+
 	Public Function CentraImmagineNelPannello(PannelloX As Integer, PannelloY As Integer, ImmX As Integer, ImmY As Integer) As String
 		Dim Ritorno As String = ""
 
